@@ -1,0 +1,63 @@
+﻿using System;
+
+namespace TestTime
+{
+    public struct Time
+    {
+        private readonly int minutes;
+
+        public Time(int hh, int mm)
+        {
+            minutes = 60 * hh + mm;
+        }
+
+        public Time(int totalMinutes)
+        {
+            minutes = totalMinutes;
+        }
+
+        public int Hour => minutes / 60;
+        public int Minute => minutes % 60;
+
+        public override string ToString()
+        {
+            return $"{Hour:D2}:{Minute:D2}";
+        }
+
+        
+        public static implicit operator Time(int totalMinutes)
+        {
+            return new Time(totalMinutes);
+        }
+
+        
+        public static explicit operator int(Time t)
+        {
+            return t.minutes;
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+           
+            Time t1 = 150; 
+            Console.WriteLine("Time from int (150 minutes): " + t1);
+
+            
+            int totalMinutes = (int)t1;
+            Console.WriteLine("Total minutes from Time: " + totalMinutes);
+
+           
+            Console.Write("\nEnter time in minutes: ");
+            int inputMinutes = int.Parse(Console.ReadLine());
+
+            Time t2 = inputMinutes; 
+            Console.WriteLine("Time: " + t2);
+
+            int minutesBack = (int)t2; 
+            Console.WriteLine("Minutes since midnight: " + minutesBack);
+        }
+    }
+}
