@@ -1,0 +1,38 @@
+﻿using System;
+
+namespace TestTime
+{
+    public struct Times
+    {
+
+        private readonly int minutes;
+        public Times(int hh, int mm)
+        {
+            this.minutes = 60 * hh + mm;
+        }
+        public override string ToString()
+        {
+            int hours = (minutes / 60) % 12;
+            if (hours == 0) 
+                hours = 12;
+            int mins = minutes % 60;
+            string period = (minutes / 60) < 12 ? "AM" : "PM";
+            return $"{hours:D2}:{mins:D2}{period}";
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Times breakfastTime = new Times(8, 15);
+            Times snackTime = new Times(3, 20);
+            Times dinnerTime = new Times(8 + 12, 50);
+            Console.WriteLine("Breakfast Time: " + breakfastTime);
+            Console.WriteLine("Snack Time: " + snackTime);
+            Console.WriteLine("Dinner Time: " + dinnerTime);
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+    }
