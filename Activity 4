@@ -1,0 +1,44 @@
+﻿using System;
+
+namespace TestTime
+{
+    public struct Time
+    {
+        private readonly int minutes;
+
+        public Time(int hh, int mm)
+        {
+            this.minutes = 60 * hh + mm;
+        }
+
+        public int Hour
+        {
+            get { return minutes / 60; }
+        }
+
+        public int Minute
+        {
+            get { return minutes % 60; }
+        }
+
+        public override string ToString()
+        {
+            return $"{Hour:D2}:{Minute:D2}";
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Time time = new Time(9, 30); // Example: 9:30
+
+            Console.WriteLine("The time is: " + time);
+            Console.WriteLine("Hour: " + time.Hour);
+            Console.WriteLine("Minute: " + time.Minute);
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
